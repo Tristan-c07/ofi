@@ -1,0 +1,8 @@
+# Data Configuration
+# Configure data sources and parameters
+
+data:
+  # Data source settings
+  source: ""
+  frequency: ""
+  fields: []

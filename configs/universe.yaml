@@ -1,0 +1,8 @@
+# Universe Configuration
+# Define the stock universe for research
+
+universe:
+  # Stock pool selection criteria
+  market: []
+  sector: []
+  filters: []

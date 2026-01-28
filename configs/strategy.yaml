@@ -1,0 +1,8 @@
+# Strategy Configuration
+# Define strategy parameters and settings
+
+strategy:
+  # Strategy parameters
+  name: ""
+  parameters: {}
+  risk_limits: {}
