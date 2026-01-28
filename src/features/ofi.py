@@ -3,7 +3,7 @@ Order Flow Imbalance (OFI) Feature
 """
 
 
-def calculate_ofi(bid_volume, ask_volume, prev_bid_volume, prev_ask_volume):
+def calculate_ofi(bid_volume: float, ask_volume: float, prev_bid_volume: float, prev_ask_volume: float) -> float:
     """
     Calculate Order Flow Imbalance indicator
     

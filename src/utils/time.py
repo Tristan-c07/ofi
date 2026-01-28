@@ -3,9 +3,10 @@ Time Utilities
 """
 
 from datetime import datetime, timedelta
+from typing import List
 
 
-def get_trading_days(start_date, end_date):
+def get_trading_days(start_date: datetime, end_date: datetime) -> List[datetime]:
     """
     Get trading days between start and end date
     
@@ -27,7 +28,7 @@ def get_trading_days(start_date, end_date):
     return days
 
 
-def format_datetime(dt, fmt="%Y-%m-%d %H:%M:%S"):
+def format_datetime(dt: datetime, fmt: str = "%Y-%m-%d %H:%M:%S") -> str:
     """
     Format datetime object to string
     
