@@ -1,4 +1,6 @@
-# src/io_lob.py
+"""
+LOB数据读写模块
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -128,4 +130,72 @@ def convert_one_day(raw_file: Path, processed_root: Path) -> Path:
     out.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(out, index=False)
     return out
+
+
+def load_processed_day(symbol: str, date_str: str, root: Path = None) -> pd.DataFrame:
+    """
+    加载已处理的单日tick数据
+    
+    Args:
+        symbol: 股票代码，如 "510050.XSHG"
+        date_str: 日期字符串，如 "2021-01-04"
+        root: 数据根目录，默认使用 paths.PROCESSED_TICKS_DIR
+    
+    Returns:
+        单日LOB数据DataFrame
+    """
+    if root is None:
+        from .paths import PROCESSED_TICKS_DIR
+        root = PROCESSED_TICKS_DIR
+    
+    path = processed_path(root.parent, symbol, date_str)
+    
+    if not path.exists():
+        raise FileNotFoundError(f"Processed data not found: {path}")
+    
+    return pd.read_parquet(path)
+
+
+def load_ofi_features(symbol: str, date_str: str, root: Path = None) -> pd.DataFrame:
+    """
+    加载OFI特征数据
+    
+    Args:
+        symbol: 股票代码
+        date_str: 日期字符串
+        root: OFI特征根目录，默认使用 paths.OFI_FEATURES_DIR
+    
+    Returns:
+        OFI特征DataFrame
+    """
+    if root is None:
+        from .paths import OFI_FEATURES_DIR
+        root = OFI_FEATURES_DIR
+    
+    path = root / symbol / f"{date_str}.parquet"
+    
+    if not path.exists():
+        raise FileNotFoundError(f"OFI features not found: {path}")
+    
+    return pd.read_parquet(path)
+
+
+def save_ofi_features(df: pd.DataFrame, symbol: str, date_str: str, root: Path = None):
+    """
+    保存OFI特征数据
+    
+    Args:
+        df: OFI特征DataFrame
+        symbol: 股票代码
+        date_str: 日期字符串
+        root: OFI特征根目录
+    """
+    if root is None:
+        from .paths import OFI_FEATURES_DIR
+        root = OFI_FEATURES_DIR
+    
+    path = root / symbol / f"{date_str}.parquet"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_parquet(path, index=True)
+
 

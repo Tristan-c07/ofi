@@ -4,8 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ofi-research"
-version = "0.0.0"
+version = "0.1.0"
+description = "Order Flow Imbalance Research for ETF High-Frequency Trading"
 requires-python = ">=3.9"
+dependencies = [
+    "pandas>=1.5.0",
+    "numpy>=1.23.0",
+    "pyarrow>=10.0.0",
+    "scipy>=1.9.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "jupyter>=1.0.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.12.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["."]
