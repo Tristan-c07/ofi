@@ -291,7 +291,7 @@ Contributions are welcome! Please open an issue or pull request.
 
 ```bash
 # 克隆仓库
-git clone <your-repo-url>
+git clone https://github.com/Tristan-c07/ofi
 cd OFI
 
 # 安装依赖
@@ -445,7 +445,7 @@ MIT License - 详见 [LICENSE](LICENSE)
 
 ## 📧 联系方式
 
-- 项目维护者: [Your Name]
+- 项目维护者: Tristan_c07
 - 更新日期: 2026-02-02
 - 状态: ✅ 可复现、可维护
 
